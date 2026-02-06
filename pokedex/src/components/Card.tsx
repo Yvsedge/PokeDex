@@ -1,12 +1,12 @@
+import {motion} from "motion/react"
+import { usePokemonStore } from "../store/usePokemonStore";
+import PokeBall from "../assets/ball.jpg"
+
 interface CardProps{
     id : number,
     name : string,
     imgAddess : string,
 }
-import {motion} from "motion/react"
-import { usePokemonStore } from "../store/usePokemonStore";
-import PokeBall from "../assets/ball.jpg"
-
 
 
 export default function Card({id, name, imgAddess} : CardProps){
