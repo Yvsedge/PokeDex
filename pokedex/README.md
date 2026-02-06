@@ -80,8 +80,7 @@ By utilizing Zustand's `persist` middleware, I ensured that a user's "Caught" Po
 ## 👤 Author
 
 **Your Name**
-*   GitHub: [@YourUsername](https://github.com/YourUsername)
-*   LinkedIn: [Your Name](https://linkedin.com/in/YourProfile)
+*   GitHub: [@YourUsername](https://github.com/Yvsedge)
 
 ---
 
