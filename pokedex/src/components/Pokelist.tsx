@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Card from "./Card"; 
 import usePokemonList from "../hook/usePokemonList";
 
