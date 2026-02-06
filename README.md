@@ -8,7 +8,7 @@ You can copy and paste this directly into your GitHub repository.
 
 An interactive, high-performance Pokédex simulation built with **React** and **TypeScript**. This application moves beyond a simple list by simulating a physical handheld device, featuring real-time data fetching, complex recursive logic, and persistent global state.
 
-**[Live Demo Link]((https://edge-pokedex.vercel.app/))**
+**[Live Demo Link]([(https://edge-pokedex.vercel.app/)])**
 
 ---
 
