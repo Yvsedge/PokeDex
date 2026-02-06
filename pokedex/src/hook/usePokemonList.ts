@@ -7,7 +7,7 @@ interface PokemonHook {
     error: string | null;
 }
 
-const usePokemonList = (): PokemonHook => {    
+const usePokemonList = (limit : number, offset : number): PokemonHook => {    
     const [loading, setLoading] = useState(false);
     const [poke, setPoke] = useState<any[]>([]);
     const [error, setError] = useState<string | null>(null);
@@ -16,7 +16,7 @@ const usePokemonList = (): PokemonHook => {
         const getPoke = async () => {
             try {
                 setLoading(true);
-                const url = "https://pokeapi.co/api/v2/pokemon?limit=386";
+                const url = `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`;
                 const response = await fetch(url);
                 
                 if (!response.ok) {
@@ -32,7 +32,7 @@ const usePokemonList = (): PokemonHook => {
             }
         }
         getPoke();
-    }, []);
+    }, [limit, offset]);
 
     return { poke, loading, error };
 }

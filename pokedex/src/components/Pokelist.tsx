@@ -2,11 +2,16 @@ import { useState, useEffect } from "react";
 import Card from "./Card"; 
 import usePokemonList from "../hook/usePokemonList";
 
+import {motion} from "motion/react"
+
 import { Link } from "react-router";
 
 export default function Pokelist(){
     const [search, setSearch] = useState("")
-    const { poke, loading, error } = usePokemonList();
+    const [region, setRegion] = useState(386);
+    const [offset, setOffset] = useState(1);
+    const { poke, loading, error } = usePokemonList(region , offset);
+    
 
     const filteredPokemon = poke.filter(p => p.name.toLowerCase().includes(search.toLowerCase()))
 
@@ -22,6 +27,35 @@ export default function Pokelist(){
                 className="mt-10 w-10/12 text-xl bg-white rounded-full py-1 px-6 shadow-inner border-4 border-zinc-800 outline-none focus:border-purple-800 transition-all"
                 onChange={(e) => setSearch(e.target.value)}
             />
+            <div className="m-2 w-10/12 flex justify-center gap-4">
+                <motion.button 
+                onClick={() => { setRegion(151); setOffset(0); }}   
+                className="rounded-xl bg-white p-4 border-2 border-black"
+                whileTap={{scale  : 0.86}}  
+                >Kanto
+                </motion.button>
+
+                <motion.button 
+                onClick={() => { setRegion(100); setOffset(151); }} 
+                className="rounded-xl bg-white p-4 border-2 border-black"
+                whileTap={{scale  : 0.86}}
+                >Johto
+                </motion.button>
+
+                <motion.button 
+                    onClick={() => { setRegion(135); setOffset(251); }} 
+                    className="rounded-xl bg-white p-4 border-2 border-black"
+                    whileTap={{scale  : 0.86}}
+                    >Hoenn
+                </motion.button>
+
+                <motion.button 
+                    onClick={() => { setRegion(386); setOffset(0); }} 
+                    className="rounded-xl bg-white p-4 border-2 border-black"
+                    whileTap={{scale  : 0.86}}
+                    >Clear
+                </motion.button>
+            </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 bg-white m-5 p-5 w-10/12 shadow-xl rounded-lg">
                 {filteredPokemon.length > 0 ? (
                     filteredPokemon.map((p) => {

@@ -1,5 +1,5 @@
 import { useParams } from "react-router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import React from "react";
 import {motion} from "motion/react"
 import { Link } from "react-router";
@@ -7,6 +7,8 @@ import { Volume2 } from "lucide-react";
 import { ChevronRight, ChevronLeft } from "lucide-react";
 import usePokemonDetails from "../hook/usePokemonDetails";
 import usePokemonEvoChain from "../hook/usePokemonEvoChain";
+import Skeleton from "./Skeleton";
+import { usePokemonStore } from "../store/usePokemonStore";
 
 const typeColors: Record<string, string> = {
     fire: "#D8223B",
@@ -41,9 +43,16 @@ export default function PokeDetails(){
     const {dets, loading, error} = usePokemonDetails(id);
     const { evoChain, loadingEvo } = usePokemonEvoChain(dets?.species?.url);
 
+    const caughtPokemon = usePokemonStore((state) => state.caughtPokemon);
+    const catchPokemon = usePokemonStore((state) => state.catchPokemon);
+    const releasePokemon = usePokemonStore((state) => state.releasePokemon);
+
+    // 2. Check if the current Pokemon is already caught
+    const isCaught = caughtPokemon.includes(numId);
 
 
-    if (loading || !dets) return <div>Loading details...</div>;
+
+    if (loading || !dets) return <div>  <Skeleton></Skeleton>  </div>;
     const height = (dets.height / 10);
     const primaryType = dets.types[0].type.name;
     const themeColor = typeColors[primaryType] || "#ffffff";
@@ -159,6 +168,12 @@ export default function PokeDetails(){
                                 </div>
                             ))}
                         </div>
+                         <button 
+                            onClick={() => isCaught ? releasePokemon(numId) : catchPokemon(numId)}
+                            className={isCaught ? "bg-red-500" : "bg-zinc-500"}
+                        >
+                            {isCaught ? "Release from Team" : "Catch Pokemon"}
+                        </button>
                     </div>
                 </div>
 
