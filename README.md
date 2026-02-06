@@ -73,9 +73,6 @@ By utilizing Zustand's `persist` middleware, I ensured that a user's "Caught" Po
 
 ---
 
-## 👤 Author
-
-**Your Name**
 *   GitHub: [@Yvsedge](https://github.com/Yvsedge)
 
 ---
